@@ -1,0 +1,33 @@
+/* Custom styles for the HTMX demo application */
+
+/* Add some transition effects to htmx swaps for better visual feedback */
+.htmx-swapping {
+    opacity: 0.5;
+    transition: opacity 0.3s ease-out;
+}
+
+/* Style the content that's being loaded */
+.htmx-added {
+    opacity: 0;
+}
+
+.htmx-settling {
+    opacity: 1;
+    transition: opacity 0.3s ease-in;
+}
+
+/* Add a subtle indicator for elements that will trigger htmx requests */
+[hx-trigger]:hover {
+    cursor: pointer;
+}
+
+/* Add a slight animation for clicked buttons to enhance user experience */
+.btn:active {
+    transform: scale(0.97);
+    transition: transform 0.1s;
+}
+
+/* Main content padding */
+.main-content {
+    padding: 2rem 0;
+}

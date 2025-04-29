@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8 mx-auto">
+        <div class="card mb-4 shadow">
+            <div class="card-body">
+                <!-- The heading will be replaced with HTMX -->
+                <h1 class="display-4 text-center mb-4" id="greeting">{{ message }}</h1>
+                
+                <div class="alert alert-info mb-4">
+                    <h5>HTMX Demo</h5>
+                    <p>This demo showcases how HTMX can update content without JavaScript.</p>
+                    <p><strong>Try the buttons below:</strong></p>
+                </div>
+                
+                <div class="d-grid gap-3">
+                    <!-- 
+                    HTMX Button Explanation:
+                    - hx-post: The endpoint to make a POST request to
+                    - hx-trigger: The event that triggers the request (click)
+                    - hx-target: The CSS selector for the element to be replaced with the response
+                    -->
+                    <button class="btn btn-secondary"
+                            hx-post="/greet"
+                            hx-trigger="click"
+                            hx-target="#greeting">
+                        Update Greeting
+                    </button>
+                    
+                    <!-- Counter demonstration -->
+                    <div id="counter-display" class="my-3">
+                        <h2 class="text-center">Count: 0</h2>
+                        <div class="d-flex justify-content-center">
+                            <button class="btn btn-secondary"
+                                    hx-post="/count"
+                                    hx-trigger="click"
+                                    hx-target="#counter-display"
+                                    hx-include="[name='current']">
+                                Increment
+                            </button>
+                        </div>
+                        <input type="hidden" name="current" value="0">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- HTMX explanation card -->
+        <div class="card shadow">
+            <div class="card-header">
+                <h4>How HTMX Works</h4>
+            </div>
+            <div class="card-body">
+                <p>HTMX allows you to access AJAX, CSS Transitions, WebSockets and Server Sent Events directly in HTML, using attributes.</p>
+                
+                <h5>Key Concepts:</h5>
+                <ul>
+                    <li><code>hx-post</code>: Specifies the URL to make a POST request to when triggered</li>
+                    <li><code>hx-get</code>: Similar to hx-post but makes a GET request</li>
+                    <li><code>hx-trigger</code>: Defines what event triggers the request (click, change, etc.)</li>
+                    <li><code>hx-target</code>: Specifies which element will be updated with the response</li>
+                    <li><code>hx-include</code>: Includes additional data in the request (like form values)</li>
+                </ul>
+                
+                <div class="alert alert-secondary">
+                    <p><strong>Benefits:</strong></p>
+                    <ul>
+                        <li>No need to write JavaScript for common AJAX patterns</li>
+                        <li>Simpler, more declarative code</li>
+                        <li>Progressive enhancement - works even without JavaScript</li>
+                        <li>Reduced complexity in your web applications</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTMX Hello World</title>
+    
+    <!-- Bootstrap CSS (Replit-themed) -->
+    <link href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css" rel="stylesheet">
+    
+    <!-- HTMX library -->
+    <script src="https://unpkg.com/htmx.org@1.9.5"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">HTMX Demo</a>
+            </div>
+        </nav>
+        
+        <div class="main-content">
+            {% block content %}{% endblock %}
+        </div>
+        
+        <footer class="py-4 text-center text-muted">
+            <small>HTMX & Flask Hello World Demo</small>
+        </footer>
+    </div>
+    
+    <!-- HTMX Extension for Debugging -->
+    <script>
+        document.body.addEventListener('htmx:configRequest', function(evt) {
+            console.log('HTMX Request Config:', evt.detail);
+        });
+        
+        document.body.addEventListener('htmx:afterSwap', function(evt) {
+            console.log('HTMX After Swap:', evt.detail);
+        });
+    </script>
+</body>
+</html>
